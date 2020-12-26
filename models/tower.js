@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Tower.init({
     name: DataTypes.STRING,
+    location: DataTypes.STRING,
     floorCount: DataTypes.INTEGER,
     officeCount: DataTypes.INTEGER,
     rating: DataTypes.STRING,
