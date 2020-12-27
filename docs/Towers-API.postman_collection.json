@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "de38c767-1f07-45bb-bd2e-4fec264da5e7",
+		"name": "Towers API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Tower",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/{{version}}/towers/{{tower_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{version}}",
+						"towers",
+						"{{tower_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Towers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{version}}/towers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{version}}",
+						"towers"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10",
+							"disabled": true
+						},
+						{
+							"key": "offset",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "id asc",
+							"disabled": true
+						},
+						{
+							"key": "filter",
+							"value": "officeCount=0",
+							"disabled": true
+						},
+						{
+							"key": "filter",
+							"value": "name!=tower2",
+							"disabled": true
+						},
+						{
+							"key": "show-with-offices",
+							"value": "true",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Tower",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"tower12\",\n    \"location\": \"loc-8\",\n    \"floorCount\": 199,\n    \"officeCount\": 299,\n    \"rating\": \"5\",\n    \"latitude\": \"12.22\",\n    \"longitude\": \"13.26\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{version}}/towers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{version}}",
+						"towers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Towers",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"tower7\",\n    \"location\": \"loc-71\",\n    \"floorCount\": 199,\n    \"officeCount\": 2988,\n    \"rating\": \"5\",\n    \"latitude\": \"12.22\",\n    \"longitude\": \"13.26\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{version}}/towers/{{tower_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{version}}",
+						"towers",
+						"{{tower_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Tower",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/{{version}}/towers/{{tower_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{version}}",
+						"towers",
+						"{{tower_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Auth (Temporary)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"testing@gmail.com\",\n    \"password\":\"testing\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/getAuth",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getAuth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Server running",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjA4MGU0NWJlNGIzMTE4MzA5M2RhNzUyYmIyZGU5Y2RjYTNlNmU4ZTciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdG93ZXItYXBpLXByb2plY3QiLCJhdWQiOiJ0b3dlci1hcGktcHJvamVjdCIsImF1dGhfdGltZSI6MTYwOTA1MDg2OCwidXNlcl9pZCI6ImVwcnh3UkpCb05XM0Zycnh2N2IyTmRVSTJwQzIiLCJzdWIiOiJlcHJ4d1JKQm9OVzNGcnJ4djdiMk5kVUkycEMyIiwiaWF0IjoxNjA5MDUwODY4LCJleHAiOjE2MDkwNTQ0NjgsImVtYWlsIjoidGVzdGluZ0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdGluZ0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.dPyzQ0Sxvk2ENqDp6B-Ge4DIWp6vL2IBf4zjndFEWt6Zk2zVGINOc9RFcqhgP7r5u_wgi-oc5Pkm9U3RZs2i2hGCef76pMCLRNi8SXRPl9aSX4_gczNZUk_GconiM-mwbiTbud3kL4yFDCeaVUk7P1QcsXhTHAPOJq5RXj6Hev4PF1TbT_H1Lw2BYUnzrd47C_GW3-ot8sR4TdtbFDr1qM06utElXfsSAN3DEKNXdyxOyfkInbD11pbhOizwIawVGEJIl-YtGKl_XI2zSyfYZxVqI2ae3cIyU_dSrISzIRbKm6oYStEgNh6YZcNmjQ3I5te6cYLPzQFTZzg2f7ooSQ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
