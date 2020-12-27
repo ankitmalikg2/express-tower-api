@@ -1,13 +1,13 @@
 const common = require("../../common/common")
 const db = require("../../database/db");
+const {Op} = require("sequelize")
 
 function listTowers(req, res, next) {
-    console.log(req.query)
     var offset = req.query.offset;
     var limit = req.query.limit;
     var sort = req.query.sort;
     var filter = req.query.filter;
-    console.log("filter-output: ",filter)
+    var showOffices = req.query["show-with-offices"]
 
     queryFilterObject = {}
 
@@ -17,6 +17,8 @@ function listTowers(req, res, next) {
 
     if( limit != undefined && limit != "" && common.isInt(limit) ){
         queryFilterObject["limit"] = limit;
+    }else{
+        queryFilterObject["limit"] = 100;
     }
 
     if(sort != undefined && sort != ""){
@@ -31,6 +33,9 @@ function listTowers(req, res, next) {
                 "status": 400,
                 "data": "Bad Input"
             })
+        }
+        if(showOffices == "true"){
+            whereObject["officeCount"] = {[Op.gt]: 0}
         }
         queryFilterObject["where"] = whereObject
     }
@@ -52,7 +57,6 @@ function listTowers(req, res, next) {
 }
 
 function getTower(req, res, next) {
-    console.log(req.headers)
     var id = req.params.id;
     db.towers.findOne({where: {id: id}})
     .then((tower) => {
@@ -66,14 +70,13 @@ function getTower(req, res, next) {
             "data": []
         })
     })
-    //   res.send('respond with a resource: '+ process.env.NAME );
 }
 
 function createTower(req, res, next) {
 
     db.towers.create(req.body).then((tower)=>{
-        res.status(200).json({
-            "status":200,
+        res.status(201).json({
+            "status":201,
             "data": tower
         }).catch(function (err) {
             res.status(500).json({

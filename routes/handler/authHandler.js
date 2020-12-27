@@ -18,6 +18,12 @@ function getAuthToken(req, res, next) {
         .signInWithEmailAndPassword(email, password)
         .then((user) => {
             res.status(200).json(user)
+        }).catch(function(err){
+            console.log(err)
+            res.status(401).json({
+                status: 401,
+                msg: "email & password is wrong"
+            })
         })
 }
 
@@ -31,6 +37,7 @@ function verifyAuthToken(req, res, next) {
     app.auth()
         .verifyIdToken(token)
         .then((decodedToken) => {
+            console.log("auth passed")
             next()
         }).catch(function (err) {
             console.log(err)

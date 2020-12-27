@@ -5,7 +5,7 @@ var authHandler = require("./handler/authHandler")
 
 
 /* GET list towers */
-router.get("/list", towerHandler.listTowers)
+router.get("/", towerHandler.listTowers)
 
 /* GET tower listing */
 router.get('/:id', towerHandler.getTower);
